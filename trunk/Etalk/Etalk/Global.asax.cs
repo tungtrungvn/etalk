@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace Etalk
+namespace Etalk.Web
 {
     public class Global : System.Web.HttpApplication
     {

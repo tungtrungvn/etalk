@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Etalk.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="Etalk.Web.Global" Language="C#" %>
