@@ -3,6 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Etalk", "Etalk\Etalk.csproj", "{B586987E-69F0-431F-BFA1-CE8E3CCF2B58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{7AD754BE-63B9-4FF5-8CB0-61D0168FB5F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bussiness", "Bussiness\Bussiness.csproj", "{5D06E537-B4A9-404E-AD9C-C6907B1B0B25}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{48900B5E-93D6-4596-8C0C-1B3B3AB35FEA}"
+	ProjectSection(SolutionItems) = preProject
+		Database\Etalk.mdf = Database\Etalk.mdf
+		Database\Etalk_log.ldf = Database\Etalk_log.ldf
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +23,14 @@ Global
 		{B586987E-69F0-431F-BFA1-CE8E3CCF2B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B586987E-69F0-431F-BFA1-CE8E3CCF2B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B586987E-69F0-431F-BFA1-CE8E3CCF2B58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AD754BE-63B9-4FF5-8CB0-61D0168FB5F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AD754BE-63B9-4FF5-8CB0-61D0168FB5F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AD754BE-63B9-4FF5-8CB0-61D0168FB5F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AD754BE-63B9-4FF5-8CB0-61D0168FB5F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D06E537-B4A9-404E-AD9C-C6907B1B0B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D06E537-B4A9-404E-AD9C-C6907B1B0B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D06E537-B4A9-404E-AD9C-C6907B1B0B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D06E537-B4A9-404E-AD9C-C6907B1B0B25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
