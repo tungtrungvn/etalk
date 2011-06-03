@@ -131,6 +131,12 @@
     <Content Include="Account\Web.config" />
     <Content Include="Site.Master" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bussiness\Etalk.Bussiness.csproj">
+      <Project>{5D06E537-B4A9-404E-AD9C-C6907B1B0B25}</Project>
+      <Name>Etalk.Bussiness</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

@@ -3,3 +3,5 @@ E:\ESpeaking\etalk\Etalk\Bussiness\bin\Debug\Etalk.Bussiness.pdb
 E:\ESpeaking\etalk\Etalk\Bussiness\obj\Debug\ResolveAssemblyReference.cache
 E:\ESpeaking\etalk\Etalk\Bussiness\obj\Debug\Etalk.Bussiness.dll
 E:\ESpeaking\etalk\Etalk\Bussiness\obj\Debug\Etalk.Bussiness.pdb
+E:\ESpeaking\etalk\Etalk\Bussiness\bin\Debug\Etalk.Data.dll
+E:\ESpeaking\etalk\Etalk\Bussiness\bin\Debug\Etalk.Data.pdb

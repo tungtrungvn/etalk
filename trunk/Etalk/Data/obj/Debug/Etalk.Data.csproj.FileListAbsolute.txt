@@ -3,3 +3,4 @@ E:\ESpeaking\etalk\Etalk\Data\bin\Debug\Etalk.Data.pdb
 E:\ESpeaking\etalk\Etalk\Data\obj\Debug\ResolveAssemblyReference.cache
 E:\ESpeaking\etalk\Etalk\Data\obj\Debug\Etalk.Data.dll
 E:\ESpeaking\etalk\Etalk\Data\obj\Debug\Etalk.Data.pdb
+E:\ESpeaking\etalk\Etalk\Data\bin\Debug\Etalk.Data.dll.config
