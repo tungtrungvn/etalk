@@ -1,0 +1,5 @@
+E:\ESpeaking\etalk\Etalk\Data\bin\Debug\Data.dll
+E:\ESpeaking\etalk\Etalk\Data\bin\Debug\Data.pdb
+E:\ESpeaking\etalk\Etalk\Data\obj\Debug\ResolveAssemblyReference.cache
+E:\ESpeaking\etalk\Etalk\Data\obj\Debug\Data.dll
+E:\ESpeaking\etalk\Etalk\Data\obj\Debug\Data.pdb
