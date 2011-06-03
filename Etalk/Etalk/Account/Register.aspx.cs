@@ -6,7 +6,7 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Etalk.Account
+namespace Etalk.Web.Account
 {
     public partial class Register : System.Web.UI.Page
     {

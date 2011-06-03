@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Etalk")]
+[assembly: AssemblyTitle("Etalk.Web")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ABC")]
-[assembly: AssemblyProduct("Etalk")]
+[assembly: AssemblyProduct("Etalk.Web")]
 [assembly: AssemblyCopyright("Copyright © ABC 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
