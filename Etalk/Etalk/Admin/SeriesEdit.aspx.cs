@@ -21,6 +21,7 @@ namespace Etalk.Web.Admin
             {
                 (Master as Admin).SetTitle("Edit series");
                 SeriesId.Visible = true;
+                IsDisabled.Visible = true;
                 int.TryParse(strId, out id);
                 if(id > 0)LoadSeries(id);
             }
@@ -34,6 +35,7 @@ namespace Etalk.Web.Admin
             {
                 lblSeriesId.Text = series.Id.ToString();
                 txtSeriesName.Text = series.Name;
+                chkIsDisabled.Checked = series.IsDisabled;
             }
         }
 
@@ -45,7 +47,7 @@ namespace Etalk.Web.Admin
             if (id == 0)
                 result = process.AddNewSeries(txtSeriesName.Text.Trim(), ref err);
             else
-                result = process.EditSeries(id,txtSeriesName.Text.Trim(),err);
+                result = process.EditSeries(id,txtSeriesName.Text.Trim(), chkIsDisabled.Checked,err);
             if(!string.IsNullOrEmpty(err)) lblMessage.Text = err;
             else if(!result) lblMessage.Text = "System fail.";
             else lblMessage.Text = "Update series successful.";
