@@ -19,8 +19,10 @@
                 <DynamicMenuItemStyle Height="30px" />
                 <Items>
                     <asp:MenuItem Text="Series" Value="Series">
-                        <asp:MenuItem Text="List Of Series" Value="List Of Series"></asp:MenuItem>
-                        <asp:MenuItem Text="Add New Series" Value="Add New Series"></asp:MenuItem>
+                        <asp:MenuItem Text="List Of Series" Value="List Of Series" 
+                            NavigateUrl="~/Admin/SeriesList.aspx"></asp:MenuItem>
+                        <asp:MenuItem Text="Add New Series" Value="Add New Series" 
+                            NavigateUrl="~/Admin/SeriesEdit.aspx"></asp:MenuItem>
                     </asp:MenuItem>
                     <asp:MenuItem Text="Topics" Value="Topics">
                         <asp:MenuItem Text="List Of Topics" Value="List Of Topics"></asp:MenuItem>

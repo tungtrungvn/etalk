@@ -32,7 +32,7 @@ namespace Etalk.Bussiness
             return Data.SaveChanges() > 0 ? true : false;
         }
 
-        public bool EditSeries(int seriesId, string seriesName,string err)
+        public bool EditSeries(int seriesId, string seriesName,bool isDisabled,string err)
         {
             var list = Data.Series.Where(s => s.Name.Equals(seriesName, StringComparison.OrdinalIgnoreCase) && s.Id != seriesId).ToList();
             if (list != null && list.Count > 0)
@@ -44,6 +44,7 @@ namespace Etalk.Bussiness
             if (series != null)
             {
                 series.Name = seriesName;
+                series.IsDisabled = isDisabled;
                 return Data.SaveChanges() > 0 ? true : false;
             }
             return false;

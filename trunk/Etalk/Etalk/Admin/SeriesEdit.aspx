@@ -18,6 +18,12 @@
                 <asp:TextBox ID="txtSeriesName" runat="server" Width="200px"></asp:TextBox>
             </td>
         </tr>
+        <tr runat="server" id="IsDisabled" visible="false">
+            <td>Is disabled</td>
+            <td>
+                <asp:CheckBox ID="chkIsDisabled" runat="server" />
+            </td>
+        </tr>
         <tr>
             <td>
             </td>

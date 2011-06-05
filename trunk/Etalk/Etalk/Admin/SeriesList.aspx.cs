@@ -44,7 +44,11 @@ namespace Etalk.Web.Admin
                 else
                 {
                     bool result = process.DeleteSeries(id);
-                    if (result) lblMessage.Text = "Delete series successful.";
+                    if (result)
+                    {
+                        lblMessage.Text = "Delete series successful.";
+                        LoadListOfSeries();
+                    }
                     else lblMessage.Text = "System fail.";
                 }
             }
