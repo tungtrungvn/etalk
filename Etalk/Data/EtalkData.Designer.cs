@@ -30,14 +30,14 @@ namespace Etalk.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    public partial class EtalkData : ObjectContext
+    public partial class EtalkConnection : ObjectContext
     {
         #region Constructors
     
         /// <summary>
         /// Initializes a new EtalkConnection object using the connection string found in the 'EtalkConnection' section of the application configuration file.
         /// </summary>
-        public EtalkData() : base("name=EtalkConnection", "EtalkConnection")
+        public EtalkConnection() : base("name=EtalkConnection", "EtalkConnection")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -46,7 +46,7 @@ namespace Etalk.Data
         /// <summary>
         /// Initialize a new EtalkConnection object.
         /// </summary>
-        public EtalkData(string connectionString) : base(connectionString, "EtalkConnection")
+        public EtalkConnection(string connectionString) : base(connectionString, "EtalkConnection")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -55,7 +55,7 @@ namespace Etalk.Data
         /// <summary>
         /// Initialize a new EtalkConnection object.
         /// </summary>
-        public EtalkData(EntityConnection connection) : base(connection, "EtalkConnection")
+        public EtalkConnection(EntityConnection connection) : base(connection, "EtalkConnection")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -459,11 +459,13 @@ namespace Etalk.Data
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Series CreateSeries(global::System.Int32 id, global::System.String name)
+        /// <param name="isDisabled">Initial value of the IsDisabled property.</param>
+        public static Series CreateSeries(global::System.Int32 id, global::System.String name, global::System.Boolean isDisabled)
         {
             Series series = new Series();
             series.Id = id;
             series.Name = name;
+            series.IsDisabled = isDisabled;
             return series;
         }
 
@@ -520,6 +522,30 @@ namespace Etalk.Data
         private global::System.String _Name;
         partial void OnNameChanging(global::System.String value);
         partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsDisabled
+        {
+            get
+            {
+                return _IsDisabled;
+            }
+            set
+            {
+                OnIsDisabledChanging(value);
+                ReportPropertyChanging("IsDisabled");
+                _IsDisabled = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsDisabled");
+                OnIsDisabledChanged();
+            }
+        }
+        private global::System.Boolean _IsDisabled;
+        partial void OnIsDisabledChanging(global::System.Boolean value);
+        partial void OnIsDisabledChanged();
 
         #endregion
     

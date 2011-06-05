@@ -18,6 +18,7 @@
     <EntitySetMapping Name="Series">
       <EntityTypeMapping TypeName="EtalkModel.Series">
         <MappingFragment StoreEntitySet="Series">
+          <ScalarProperty Name="IsDisabled" ColumnName="IsDisabled" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>

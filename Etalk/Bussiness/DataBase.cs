@@ -4,10 +4,10 @@ namespace Etalk.Bussiness
 {
     public class DataBase
     {
-        protected EtalkData Data;
+        protected EtalkConnection Data;
         public DataBase()
         {
-            Data = new EtalkData();
+            Data = new EtalkConnection();
         }
     }
 }
