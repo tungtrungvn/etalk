@@ -3,7 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>
+        <asp:Literal ID="ltrPageTitle" runat="server"></asp:Literal>
+    </title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -32,6 +34,9 @@
                 </Items>
                 <StaticMenuItemStyle Width="80px" Height="30px" />
             </asp:Menu>
+        </div>
+        <div style="padding-top:30px;padding-bottom:10px;font-size:14pt;font-weight:bold">
+            <asp:Label ID="lblPageTitle" runat="server"></asp:Label>
         </div>
         <div id="content" style="width:100%; height:auto">
             <asp:ContentPlaceHolder ID="cphContent" runat="server">

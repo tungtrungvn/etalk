@@ -13,6 +13,15 @@ namespace Etalk.Web.Admin {
     public partial class Admin {
         
         /// <summary>
+        /// ltrPageTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrPageTitle;
+        
+        /// <summary>
         /// head control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace Etalk.Web.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Menu Menu1;
+        
+        /// <summary>
+        /// lblPageTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPageTitle;
         
         /// <summary>
         /// cphContent control.
