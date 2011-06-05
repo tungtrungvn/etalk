@@ -8,5 +8,10 @@ namespace Etalk.Web.Admin
         {
 
         }
+        public void SetTitle(string pageTitle)
+        {
+            ltrPageTitle.Text = pageTitle + "  ::  Etalk" ;
+            lblPageTitle.Text = pageTitle;
+        }
     }
 }

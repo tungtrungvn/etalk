@@ -18,8 +18,8 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("EtalkData", "FK_Videos_SeriesOfVieos", "Serieses", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Etalk.Data.Series), "MediaItems", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Etalk.Data.MediaItem), true)]
-[assembly: EdmRelationshipAttribute("EtalkData", "MediaItem_Topic", "MediaItems", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Etalk.Data.MediaItem), "Topics", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Etalk.Data.Topic))]
+[assembly: EdmRelationshipAttribute("EtalkModel", "FK_Videos_SeriesOfVieos", "Series", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Etalk.Data.Series), "MediaItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Etalk.Data.MediaItem), true)]
+[assembly: EdmRelationshipAttribute("EtalkModel", "MediaItem_Topic", "MediaItem", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Etalk.Data.MediaItem), "Topic", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Etalk.Data.Topic))]
 
 #endregion
 
@@ -30,32 +30,32 @@ namespace Etalk.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    public partial class Etalk : ObjectContext
+    public partial class EtalkData : ObjectContext
     {
         #region Constructors
     
         /// <summary>
-        /// Initializes a new Etalk object using the connection string found in the 'Etalk' section of the application configuration file.
+        /// Initializes a new EtalkConnection object using the connection string found in the 'EtalkConnection' section of the application configuration file.
         /// </summary>
-        public Etalk() : base("name=Etalk", "Etalk")
+        public EtalkData() : base("name=EtalkConnection", "EtalkConnection")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new Etalk object.
+        /// Initialize a new EtalkConnection object.
         /// </summary>
-        public Etalk(string connectionString) : base(connectionString, "Etalk")
+        public EtalkData(string connectionString) : base(connectionString, "EtalkConnection")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new Etalk object.
+        /// Initialize a new EtalkConnection object.
         /// </summary>
-        public Etalk(EntityConnection connection) : base(connection, "Etalk")
+        public EtalkData(EntityConnection connection) : base(connection, "EtalkConnection")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -90,34 +90,18 @@ namespace Etalk.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Series> Serieses
+        public ObjectSet<Series> Series
         {
             get
             {
-                if ((_Serieses == null))
+                if ((_Series == null))
                 {
-                    _Serieses = base.CreateObjectSet<Series>("Serieses");
+                    _Series = base.CreateObjectSet<Series>("Series");
                 }
-                return _Serieses;
+                return _Series;
             }
         }
-        private ObjectSet<Series> _Serieses;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<sysdiagram> sysdiagrams
-        {
-            get
-            {
-                if ((_sysdiagrams == null))
-                {
-                    _sysdiagrams = base.CreateObjectSet<sysdiagram>("sysdiagrams");
-                }
-                return _sysdiagrams;
-            }
-        }
-        private ObjectSet<sysdiagram> _sysdiagrams;
+        private ObjectSet<Series> _Series;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -147,19 +131,11 @@ namespace Etalk.Data
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Serieses EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Series EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToSerieses(Series series)
+        public void AddToSeries(Series series)
         {
-            base.AddObject("Serieses", series);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the sysdiagrams EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTosysdiagrams(sysdiagram sysdiagram)
-        {
-            base.AddObject("sysdiagrams", sysdiagram);
+            base.AddObject("Series", series);
         }
     
         /// <summary>
@@ -181,7 +157,7 @@ namespace Etalk.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="EtalkData", Name="MediaItem")]
+    [EdmEntityTypeAttribute(NamespaceName="EtalkModel", Name="MediaItem")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class MediaItem : EntityObject
@@ -411,16 +387,16 @@ namespace Etalk.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EtalkData", "FK_Videos_SeriesOfVieos", "Serieses")]
+        [EdmRelationshipNavigationPropertyAttribute("EtalkModel", "FK_Videos_SeriesOfVieos", "Series")]
         public Series Series
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Series>("EtalkData.FK_Videos_SeriesOfVieos", "Serieses").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Series>("EtalkModel.FK_Videos_SeriesOfVieos", "Series").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Series>("EtalkData.FK_Videos_SeriesOfVieos", "Serieses").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Series>("EtalkModel.FK_Videos_SeriesOfVieos", "Series").Value = value;
             }
         }
         /// <summary>
@@ -432,13 +408,13 @@ namespace Etalk.Data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Series>("EtalkData.FK_Videos_SeriesOfVieos", "Serieses");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Series>("EtalkModel.FK_Videos_SeriesOfVieos", "Series");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Series>("EtalkData.FK_Videos_SeriesOfVieos", "Serieses", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Series>("EtalkModel.FK_Videos_SeriesOfVieos", "Series", value);
                 }
             }
         }
@@ -449,18 +425,18 @@ namespace Etalk.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EtalkData", "MediaItem_Topic", "Topics")]
+        [EdmRelationshipNavigationPropertyAttribute("EtalkModel", "MediaItem_Topic", "Topic")]
         public EntityCollection<Topic> Topics
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Topic>("EtalkData.MediaItem_Topic", "Topics");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Topic>("EtalkModel.MediaItem_Topic", "Topic");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Topic>("EtalkData.MediaItem_Topic", "Topics", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Topic>("EtalkModel.MediaItem_Topic", "Topic", value);
                 }
             }
         }
@@ -471,7 +447,7 @@ namespace Etalk.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="EtalkData", Name="Series")]
+    [EdmEntityTypeAttribute(NamespaceName="EtalkModel", Name="Series")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Series : EntityObject
@@ -555,18 +531,18 @@ namespace Etalk.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EtalkData", "FK_Videos_SeriesOfVieos", "MediaItems")]
+        [EdmRelationshipNavigationPropertyAttribute("EtalkModel", "FK_Videos_SeriesOfVieos", "MediaItem")]
         public EntityCollection<MediaItem> MediaItems
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MediaItem>("EtalkData.FK_Videos_SeriesOfVieos", "MediaItems");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MediaItem>("EtalkModel.FK_Videos_SeriesOfVieos", "MediaItem");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MediaItem>("EtalkData.FK_Videos_SeriesOfVieos", "MediaItems", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MediaItem>("EtalkModel.FK_Videos_SeriesOfVieos", "MediaItem", value);
                 }
             }
         }
@@ -577,162 +553,7 @@ namespace Etalk.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="EtalkData", Name="sysdiagram")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class sysdiagram : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new sysdiagram object.
-        /// </summary>
-        /// <param name="name">Initial value of the name property.</param>
-        /// <param name="principal_id">Initial value of the principal_id property.</param>
-        /// <param name="diagram_id">Initial value of the diagram_id property.</param>
-        public static sysdiagram Createsysdiagram(global::System.String name, global::System.Int32 principal_id, global::System.Int32 diagram_id)
-        {
-            sysdiagram sysdiagram = new sysdiagram();
-            sysdiagram.name = name;
-            sysdiagram.principal_id = principal_id;
-            sysdiagram.diagram_id = diagram_id;
-            return sysdiagram;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                OnnameChanging(value);
-                ReportPropertyChanging("name");
-                _name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("name");
-                OnnameChanged();
-            }
-        }
-        private global::System.String _name;
-        partial void OnnameChanging(global::System.String value);
-        partial void OnnameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 principal_id
-        {
-            get
-            {
-                return _principal_id;
-            }
-            set
-            {
-                Onprincipal_idChanging(value);
-                ReportPropertyChanging("principal_id");
-                _principal_id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("principal_id");
-                Onprincipal_idChanged();
-            }
-        }
-        private global::System.Int32 _principal_id;
-        partial void Onprincipal_idChanging(global::System.Int32 value);
-        partial void Onprincipal_idChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 diagram_id
-        {
-            get
-            {
-                return _diagram_id;
-            }
-            set
-            {
-                if (_diagram_id != value)
-                {
-                    Ondiagram_idChanging(value);
-                    ReportPropertyChanging("diagram_id");
-                    _diagram_id = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("diagram_id");
-                    Ondiagram_idChanged();
-                }
-            }
-        }
-        private global::System.Int32 _diagram_id;
-        partial void Ondiagram_idChanging(global::System.Int32 value);
-        partial void Ondiagram_idChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> version
-        {
-            get
-            {
-                return _version;
-            }
-            set
-            {
-                OnversionChanging(value);
-                ReportPropertyChanging("version");
-                _version = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("version");
-                OnversionChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _version;
-        partial void OnversionChanging(Nullable<global::System.Int32> value);
-        partial void OnversionChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.Byte[] definition
-        {
-            get
-            {
-                return StructuralObject.GetValidValue(_definition);
-            }
-            set
-            {
-                OndefinitionChanging(value);
-                ReportPropertyChanging("definition");
-                _definition = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("definition");
-                OndefinitionChanged();
-            }
-        }
-        private global::System.Byte[] _definition;
-        partial void OndefinitionChanging(global::System.Byte[] value);
-        partial void OndefinitionChanged();
-
-        #endregion
-    
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="EtalkData", Name="Topic")]
+    [EdmEntityTypeAttribute(NamespaceName="EtalkModel", Name="Topic")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Topic : EntityObject
@@ -816,18 +637,18 @@ namespace Etalk.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("EtalkData", "MediaItem_Topic", "MediaItems")]
+        [EdmRelationshipNavigationPropertyAttribute("EtalkModel", "MediaItem_Topic", "MediaItem")]
         public EntityCollection<MediaItem> MediaItems
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MediaItem>("EtalkData.MediaItem_Topic", "MediaItems");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<MediaItem>("EtalkModel.MediaItem_Topic", "MediaItem");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MediaItem>("EtalkData.MediaItem_Topic", "MediaItems", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<MediaItem>("EtalkModel.MediaItem_Topic", "MediaItem", value);
                 }
             }
         }

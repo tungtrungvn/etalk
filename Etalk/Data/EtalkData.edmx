@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EtalkModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="EtalkModelStoreContainer">
+          <EntitySet Name="MediaItem_Topic" EntityType="EtalkModel.Store.MediaItem_Topic" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MediaItems" EntityType="EtalkModel.Store.MediaItems" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Series" EntityType="EtalkModel.Store.Series" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Topics" EntityType="EtalkModel.Store.Topics" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Videos_SeriesOfVieos" Association="EtalkModel.Store.FK_Videos_SeriesOfVieos">
+            <End Role="Series" EntitySet="Series" />
+            <End Role="MediaItems" EntitySet="MediaItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_VideoTopics_Videos" Association="EtalkModel.Store.FK_Videos_VideoTopics_Videos">
+            <End Role="MediaItems" EntitySet="MediaItems" />
+            <End Role="MediaItem_Topic" EntitySet="MediaItem_Topic" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Videos_VideoTopics_VideoTopics" Association="EtalkModel.Store.FK_Videos_VideoTopics_VideoTopics">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="MediaItem_Topic" EntitySet="MediaItem_Topic" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="MediaItem_Topic">
+          <Key>
+            <PropertyRef Name="MediaItemId" />
+            <PropertyRef Name="TopicId" />
+          </Key>
+          <Property Name="MediaItemId" Type="int" Nullable="false" />
+          <Property Name="TopicId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MediaItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="SeriesId" Type="int" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Script" Type="nvarchar(max)" />
+          <Property Name="Path" Type="nvarchar" MaxLength="1000" />
+          <Property Name="MediaType" Type="tinyint" />
+          <Property Name="FileType" Type="tinyint" Nullable="false" />
+          <Property Name="Website" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Topics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Videos_SeriesOfVieos">
+          <End Role="Series" Type="EtalkModel.Store.Series" Multiplicity="0..1" />
+          <End Role="MediaItems" Type="EtalkModel.Store.MediaItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Series">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MediaItems">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Videos_VideoTopics_Videos">
+          <End Role="MediaItems" Type="EtalkModel.Store.MediaItems" Multiplicity="1" />
+          <End Role="MediaItem_Topic" Type="EtalkModel.Store.MediaItem_Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MediaItems">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MediaItem_Topic">
+              <PropertyRef Name="MediaItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Videos_VideoTopics_VideoTopics">
+          <End Role="Topics" Type="EtalkModel.Store.Topics" Multiplicity="1" />
+          <End Role="MediaItem_Topic" Type="EtalkModel.Store.MediaItem_Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MediaItem_Topic">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EtalkModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="EtalkConnection" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MediaItems" EntityType="EtalkModel.MediaItem" />
+          <EntitySet Name="Series" EntityType="EtalkModel.Series" />
+          <EntitySet Name="Topics" EntityType="EtalkModel.Topic" />
+          <AssociationSet Name="FK_Videos_SeriesOfVieos" Association="EtalkModel.FK_Videos_SeriesOfVieos">
+            <End Role="Series" EntitySet="Series" />
+            <End Role="MediaItem" EntitySet="MediaItems" />
+          </AssociationSet>
+          <AssociationSet Name="MediaItem_Topic" Association="EtalkModel.MediaItem_Topic">
+            <End Role="MediaItem" EntitySet="MediaItems" />
+            <End Role="Topic" EntitySet="Topics" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="MediaItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="SeriesId" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Script" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Path" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="Byte" Name="MediaType" />
+          <Property Type="Byte" Name="FileType" Nullable="false" />
+          <Property Type="String" Name="Website" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Series" Relationship="EtalkModel.FK_Videos_SeriesOfVieos" FromRole="MediaItem" ToRole="Series" />
+          <NavigationProperty Name="Topics" Relationship="EtalkModel.MediaItem_Topic" FromRole="MediaItem" ToRole="Topic" />
+        </EntityType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MediaItems" Relationship="EtalkModel.FK_Videos_SeriesOfVieos" FromRole="Series" ToRole="MediaItem" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MediaItems" Relationship="EtalkModel.MediaItem_Topic" FromRole="Topic" ToRole="MediaItem" />
+        </EntityType>
+        <Association Name="FK_Videos_SeriesOfVieos">
+          <End Type="EtalkModel.Series" Role="Series" Multiplicity="0..1" />
+          <End Type="EtalkModel.MediaItem" Role="MediaItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Series">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MediaItem">
+              <PropertyRef Name="SeriesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MediaItem_Topic">
+          <End Type="EtalkModel.MediaItem" Role="MediaItem" Multiplicity="*" />
+          <End Type="EtalkModel.Topic" Role="Topic" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EtalkModelStoreContainer" CdmEntityContainer="EtalkConnection">
+          <EntitySetMapping Name="MediaItems">
+            <EntityTypeMapping TypeName="EtalkModel.MediaItem">
+              <MappingFragment StoreEntitySet="MediaItems">
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="MediaType" ColumnName="MediaType" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Script" ColumnName="Script" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Series">
+            <EntityTypeMapping TypeName="EtalkModel.Series">
+              <MappingFragment StoreEntitySet="Series">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="EtalkModel.Topic">
+              <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="MediaItem_Topic" TypeName="EtalkModel.MediaItem_Topic" StoreEntitySet="MediaItem_Topic">
+            <EndProperty Name="Topic">
+              <ScalarProperty Name="Id" ColumnName="TopicId" />
+            </EndProperty>
+            <EndProperty Name="MediaItem">
+              <ScalarProperty Name="Id" ColumnName="MediaItemId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="EtalkData">
+        <EntityTypeShape EntityType="EtalkModel.MediaItem" Width="1.5" PointX="3" PointY="1" Height="2.6049988112847" />
+        <EntityTypeShape EntityType="EtalkModel.Series" Width="1.5" PointX="0.75" PointY="1.5" Height="1.4402398359775539" />
+        <EntityTypeShape EntityType="EtalkModel.Topic" Width="1.5" PointX="5.25" PointY="1.5" Height="1.4402398359775539" />
+        <AssociationConnector Association="EtalkModel.FK_Videos_SeriesOfVieos" >
+          <ConnectorPoint PointX="2.25" PointY="2.2201199179887769" />
+          <ConnectorPoint PointX="3" PointY="2.2201199179887769" />
+        </AssociationConnector>
+        <AssociationConnector Association="EtalkModel.MediaItem_Topic" >
+          <ConnectorPoint PointX="4.5" PointY="2.2201199179887769" />
+          <ConnectorPoint PointX="5.25" PointY="2.2201199179887769" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
