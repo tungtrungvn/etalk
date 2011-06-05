@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EtalkModelStoreContainer" CdmEntityContainer="EtalkConnection">
+    <EntitySetMapping Name="MediaItems">
+      <EntityTypeMapping TypeName="EtalkModel.MediaItem">
+        <MappingFragment StoreEntitySet="MediaItems">
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
+          <ScalarProperty Name="MediaType" ColumnName="MediaType" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="Script" ColumnName="Script" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="SeriesId" ColumnName="SeriesId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Series">
+      <EntityTypeMapping TypeName="EtalkModel.Series">
+        <MappingFragment StoreEntitySet="Series">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Topics">
+      <EntityTypeMapping TypeName="EtalkModel.Topic">
+        <MappingFragment StoreEntitySet="Topics">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="MediaItem_Topic" TypeName="EtalkModel.MediaItem_Topic" StoreEntitySet="MediaItem_Topic">
+      <EndProperty Name="Topic">
+        <ScalarProperty Name="Id" ColumnName="TopicId" />
+      </EndProperty>
+      <EndProperty Name="MediaItem">
+        <ScalarProperty Name="Id" ColumnName="MediaItemId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
