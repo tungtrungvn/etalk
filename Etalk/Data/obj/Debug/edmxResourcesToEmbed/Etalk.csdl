@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EtalkData" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="Etalk" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MediaItems" EntityType="EtalkData.MediaItem" />
+    <EntitySet Name="Serieses" EntityType="EtalkData.Series" />
+    <EntitySet Name="sysdiagrams" EntityType="EtalkData.sysdiagram" />
+    <EntitySet Name="Topics" EntityType="EtalkData.Topic" />
+    <AssociationSet Name="FK_Videos_SeriesOfVieos" Association="EtalkData.FK_Videos_SeriesOfVieos">
+      <End Role="Serieses" EntitySet="Serieses" />
+      <End Role="MediaItems" EntitySet="MediaItems" />
+    </AssociationSet>
+    <AssociationSet Name="MediaItem_Topic" Association="EtalkData.MediaItem_Topic">
+      <End Role="MediaItems" EntitySet="MediaItems" />
+      <End Role="Topics" EntitySet="Topics" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MediaItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="SeriesId" Type="Int32" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Script" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Path" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+    <Property Name="MediaType" Type="Byte" />
+    <Property Name="FileType" Type="Byte" Nullable="false" />
+    <Property Name="Website" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Series" Relationship="EtalkData.FK_Videos_SeriesOfVieos" FromRole="MediaItems" ToRole="Serieses" />
+    <NavigationProperty Name="Topics" Relationship="EtalkData.MediaItem_Topic" FromRole="MediaItems" ToRole="Topics" />
+  </EntityType>
+  <EntityType Name="Series">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="MediaItems" Relationship="EtalkData.FK_Videos_SeriesOfVieos" FromRole="Serieses" ToRole="MediaItems" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Topic">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="MediaItems" Relationship="EtalkData.MediaItem_Topic" FromRole="Topics" ToRole="MediaItems" />
+  </EntityType>
+  <Association Name="FK_Videos_SeriesOfVieos">
+    <End Role="Serieses" Type="EtalkData.Series" Multiplicity="0..1" />
+    <End Role="MediaItems" Type="EtalkData.MediaItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Serieses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MediaItems">
+        <PropertyRef Name="SeriesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MediaItem_Topic">
+    <End Role="MediaItems" Type="EtalkData.MediaItem" Multiplicity="*" />
+    <End Role="Topics" Type="EtalkData.Topic" Multiplicity="*" />
+  </Association>
+</Schema>

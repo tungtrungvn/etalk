@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="Etalk.Web.Admin.Admin" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div style="margin: auto; width: 940px; height: auto">
+        <div id="banner" style="width: 100%; height: 100px">
+        </div>
+        <div id="menu" style="width: 100%; height: 30px">
+            <asp:Menu ID="Menu1" runat="server" Orientation="Horizontal">
+                <DynamicMenuItemStyle Height="30px" />
+                <Items>
+                    <asp:MenuItem Text="Series" Value="Series">
+                        <asp:MenuItem Text="List Of Series" Value="List Of Series"></asp:MenuItem>
+                        <asp:MenuItem Text="Edit Series" Value="Edit Series"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Topics" Value="Topics">
+                        <asp:MenuItem Text="List Of Topics" Value="List Of Topics"></asp:MenuItem>
+                        <asp:MenuItem Text="Edit Topic" Value="Edit Topic"></asp:MenuItem>
+                    </asp:MenuItem>
+                    <asp:MenuItem Text="Media Items" Value="Media Items">
+                        <asp:MenuItem Text="List Of Media Items" Value="List Of Media Items">
+                        </asp:MenuItem>
+                        <asp:MenuItem Text="Edit Media Item" Value="Edit Media Item"></asp:MenuItem>
+                    </asp:MenuItem>
+                </Items>
+                <StaticMenuItemStyle Width="80px" Height="30px" />
+            </asp:Menu>
+        </div>
+        <div id="content" style="width:100%; height:auto">
+            <asp:ContentPlaceHolder ID="cphContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
