@@ -5,3 +5,5 @@ E:\ESpeaking\etalk\Etalk\Etalk\obj\Debug\Etalk.Web.dll
 E:\ESpeaking\etalk\Etalk\Etalk\obj\Debug\Etalk.Web.pdb
 E:\ESpeaking\etalk\Etalk\Etalk\bin\Etalk.Bussiness.dll
 E:\ESpeaking\etalk\Etalk\Etalk\bin\Etalk.Bussiness.pdb
+E:\ESpeaking\etalk\Etalk\Etalk\bin\Etalk.Data.dll
+E:\ESpeaking\etalk\Etalk\Etalk\bin\Etalk.Data.pdb

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EtalkModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="EtalkModelStoreContainer">
+    <EntitySet Name="MediaItem_Topic" EntityType="EtalkModel.Store.MediaItem_Topic" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MediaItems" EntityType="EtalkModel.Store.MediaItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Series" EntityType="EtalkModel.Store.Series" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Topics" EntityType="EtalkModel.Store.Topics" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Videos_SeriesOfVieos" Association="EtalkModel.Store.FK_Videos_SeriesOfVieos">
+      <End Role="Series" EntitySet="Series" />
+      <End Role="MediaItems" EntitySet="MediaItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Videos_VideoTopics_Videos" Association="EtalkModel.Store.FK_Videos_VideoTopics_Videos">
+      <End Role="MediaItems" EntitySet="MediaItems" />
+      <End Role="MediaItem_Topic" EntitySet="MediaItem_Topic" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Videos_VideoTopics_VideoTopics" Association="EtalkModel.Store.FK_Videos_VideoTopics_VideoTopics">
+      <End Role="Topics" EntitySet="Topics" />
+      <End Role="MediaItem_Topic" EntitySet="MediaItem_Topic" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MediaItem_Topic">
+    <Key>
+      <PropertyRef Name="MediaItemId" />
+      <PropertyRef Name="TopicId" />
+    </Key>
+    <Property Name="MediaItemId" Type="int" Nullable="false" />
+    <Property Name="TopicId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MediaItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="SeriesId" Type="int" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Script" Type="nvarchar(max)" />
+    <Property Name="Path" Type="nvarchar" MaxLength="1000" />
+    <Property Name="MediaType" Type="tinyint" />
+    <Property Name="FileType" Type="tinyint" Nullable="false" />
+    <Property Name="Website" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Series">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Topics">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Videos_SeriesOfVieos">
+    <End Role="Series" Type="EtalkModel.Store.Series" Multiplicity="0..1" />
+    <End Role="MediaItems" Type="EtalkModel.Store.MediaItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Series">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MediaItems">
+        <PropertyRef Name="SeriesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Videos_VideoTopics_Videos">
+    <End Role="MediaItems" Type="EtalkModel.Store.MediaItems" Multiplicity="1" />
+    <End Role="MediaItem_Topic" Type="EtalkModel.Store.MediaItem_Topic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MediaItems">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MediaItem_Topic">
+        <PropertyRef Name="MediaItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Videos_VideoTopics_VideoTopics">
+    <End Role="Topics" Type="EtalkModel.Store.Topics" Multiplicity="1" />
+    <End Role="MediaItem_Topic" Type="EtalkModel.Store.MediaItem_Topic" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Topics">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MediaItem_Topic">
+        <PropertyRef Name="TopicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
