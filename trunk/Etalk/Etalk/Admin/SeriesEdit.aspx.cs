@@ -21,7 +21,6 @@ namespace Etalk.Web.Admin
             {
                 (Master as Admin).SetTitle("Edit series");
                 SeriesId.Visible = true;
-                //int id = 0;
                 int.TryParse(strId, out id);
                 if(id > 0)LoadSeries(id);
             }
@@ -40,7 +39,16 @@ namespace Etalk.Web.Admin
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
+            SeriesProcess process = new SeriesProcess();
+            string err = string.Empty;
+            bool result = false;
+            if (id == 0)
+                result = process.AddNewSeries(txtSeriesName.Text.Trim(), ref err);
+            else
+                result = process.EditSeries(id,txtSeriesName.Text.Trim(),err);
+            if(!string.IsNullOrEmpty(err)) lblMessage.Text = err;
+            else if(!result) lblMessage.Text = "System fail.";
+            else lblMessage.Text = "Update series successful.";
         }
     }
 }

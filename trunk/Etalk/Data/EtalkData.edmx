@@ -10,7 +10,7 @@
           <EntitySet Name="MediaItems" EntityType="EtalkModel.Store.MediaItems" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Series" EntityType="EtalkModel.Store.Series" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Topics" EntityType="EtalkModel.Store.Topics" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_Videos_SeriesOfVieos" Association="EtalkModel.Store.FK_Videos_SeriesOfVieos">
+          <AssociationSet Name="FK_MediaItems_Series" Association="EtalkModel.Store.FK_MediaItems_Series">
             <End Role="Series" EntitySet="Series" />
             <End Role="MediaItems" EntitySet="MediaItems" />
           </AssociationSet>
@@ -35,7 +35,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="SeriesId" Type="int" />
           <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Script" Type="nvarchar(max)" />
@@ -48,17 +48,18 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IsDisabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Topics">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_Videos_SeriesOfVieos">
+        <Association Name="FK_MediaItems_Series">
           <End Role="Series" Type="EtalkModel.Store.Series" Multiplicity="0..1" />
           <End Role="MediaItems" Type="EtalkModel.Store.MediaItems" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,7 +116,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="SeriesId" />
           <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Script" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -130,15 +131,16 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MediaItems" Relationship="EtalkModel.FK_Videos_SeriesOfVieos" FromRole="Series" ToRole="MediaItem" />
+          <Property Type="Boolean" Name="IsDisabled" Nullable="false" />
         </EntityType>
         <EntityType Name="Topic">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MediaItems" Relationship="EtalkModel.MediaItem_Topic" FromRole="Topic" ToRole="MediaItem" />
         </EntityType>
@@ -181,6 +183,7 @@
           <EntitySetMapping Name="Series">
             <EntityTypeMapping TypeName="EtalkModel.Series">
               <MappingFragment StoreEntitySet="Series">
+                <ScalarProperty Name="IsDisabled" ColumnName="IsDisabled" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

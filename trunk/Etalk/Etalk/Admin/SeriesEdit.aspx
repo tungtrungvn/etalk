@@ -27,4 +27,5 @@
             </td>
         </tr>
     </table>
+    <asp:Label ID="lblMessage" runat="server" ForeColor="red"></asp:Label>
 </asp:Content>
