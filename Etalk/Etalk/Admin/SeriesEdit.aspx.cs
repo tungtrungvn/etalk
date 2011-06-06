@@ -15,15 +15,18 @@ namespace Etalk.Web.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             string strId = Request.QueryString["id"];
-            if (string.IsNullOrEmpty(strId))
-                (Master as Admin).SetTitle("Add new series");
-            else
+            int.TryParse(strId, out id);
+            if (!IsPostBack)
             {
-                (Master as Admin).SetTitle("Edit series");
-                SeriesId.Visible = true;
-                IsDisabled.Visible = true;
-                int.TryParse(strId, out id);
-                if(id > 0)LoadSeries(id);
+                if (string.IsNullOrEmpty(strId))
+                    (Master as Admin).SetTitle("Add new series");
+                else
+                {
+                    (Master as Admin).SetTitle("Edit series");
+                    SeriesId.Visible = true;
+                    IsDisabled.Visible = true;
+                    if (id > 0) LoadSeries(id);
+                }
             }
         }
 

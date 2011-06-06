@@ -7,6 +7,7 @@
         <Columns>
             <asp:BoundField DataField="Id" HeaderText="Series id" />
             <asp:BoundField DataField="Name" HeaderText="Series name" />
+            <asp:BoundField DataField="IsDisabled" HeaderText="Is disabled" />
             <asp:TemplateField HeaderText="Edit">
                 <ItemTemplate>
                     <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit" 
@@ -18,6 +19,9 @@
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
+        <EmptyDataTemplate>
+            There is no series.
+        </EmptyDataTemplate>
     </asp:GridView>
     <asp:Label ID="lblMessage" runat="server" ForeColor="red"></asp:Label>
 </asp:Content>

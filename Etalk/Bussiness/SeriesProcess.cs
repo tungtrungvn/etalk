@@ -55,9 +55,8 @@ namespace Etalk.Bussiness
             Series series = Data.Series.SingleOrDefault(s=>s.Id == seriesId);
             if (series != null)
             {
-                if (series.MediaItems != null && series.MediaItems.Count > 0) return true;
-                else return false;
-
+                if (series.MediaItems != null && series.MediaItems.Count > 0) return false;
+                else return true;
             }
             return true;
         }
