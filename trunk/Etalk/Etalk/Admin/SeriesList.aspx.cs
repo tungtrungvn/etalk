@@ -31,14 +31,15 @@ namespace Etalk.Web.Admin
         protected void grvSeries_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int id = 0;
-            int.TryParse((sender as LinkButton).CommandArgument, out id);
+            Control btnDelete = grvSeries.Rows[e.RowIndex].FindControl("btnDelete");
+            int.TryParse((btnDelete as LinkButton).CommandArgument, out id);
             if (id > 0)
             {
                 SeriesProcess process = new SeriesProcess();
                 bool isEmpty = process.IsSeriesEmpty(id);
                 if (!isEmpty)
                 {
-                    string script = "alert('This series is not empty.\r\nSo you can not delete it.');";
+                    string script = "alert('This series is not empty. So you can not delete it.');";
                     ClientScript.RegisterStartupScript(this.GetType(),"deleteSeries",script,true);
                 }
                 else
