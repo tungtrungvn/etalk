@@ -58,6 +58,8 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="Admin\SeriesEdit.aspx" />
     <Content Include="Admin\SeriesList.aspx" />
+    <Content Include="Admin\TopicEdit.aspx" />
+    <Content Include="Admin\TopicList.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
@@ -128,6 +130,20 @@
     </Compile>
     <Compile Include="Admin\SeriesList.aspx.designer.cs">
       <DependentUpon>SeriesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TopicEdit.aspx.cs">
+      <DependentUpon>TopicEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TopicEdit.aspx.designer.cs">
+      <DependentUpon>TopicEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\TopicList.aspx.cs">
+      <DependentUpon>TopicList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\TopicList.aspx.designer.cs">
+      <DependentUpon>TopicList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
