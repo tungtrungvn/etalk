@@ -43,6 +43,7 @@
           <Property Name="MediaType" Type="tinyint" />
           <Property Name="FileType" Type="tinyint" Nullable="false" />
           <Property Name="Website" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsDisabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Series">
           <Key>
@@ -58,6 +59,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IsDisabled" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_MediaItems_Series">
           <End Role="Series" Type="EtalkModel.Store.Series" Multiplicity="0..1" />
@@ -126,6 +128,7 @@
           <Property Type="String" Name="Website" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Series" Relationship="EtalkModel.FK_Videos_SeriesOfVieos" FromRole="MediaItem" ToRole="Series" />
           <NavigationProperty Name="Topics" Relationship="EtalkModel.MediaItem_Topic" FromRole="MediaItem" ToRole="Topic" />
+          <Property Type="Boolean" Name="IsDisabled" Nullable="false" />
         </EntityType>
         <EntityType Name="Series">
           <Key>
@@ -143,6 +146,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="MediaItems" Relationship="EtalkModel.MediaItem_Topic" FromRole="Topic" ToRole="MediaItem" />
+          <Property Type="Boolean" Name="IsDisabled" Nullable="false" />
         </EntityType>
         <Association Name="FK_Videos_SeriesOfVieos">
           <End Type="EtalkModel.Series" Role="Series" Multiplicity="0..1" />
@@ -169,6 +173,7 @@
           <EntitySetMapping Name="MediaItems">
             <EntityTypeMapping TypeName="EtalkModel.MediaItem">
               <MappingFragment StoreEntitySet="MediaItems">
+                <ScalarProperty Name="IsDisabled" ColumnName="IsDisabled" />
                 <ScalarProperty Name="Website" ColumnName="Website" />
                 <ScalarProperty Name="FileType" ColumnName="FileType" />
                 <ScalarProperty Name="MediaType" ColumnName="MediaType" />
@@ -192,6 +197,7 @@
           <EntitySetMapping Name="Topics">
             <EntityTypeMapping TypeName="EtalkModel.Topic">
               <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="IsDisabled" ColumnName="IsDisabled" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

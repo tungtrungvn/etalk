@@ -18,17 +18,56 @@ namespace Etalk.Bussiness
             return Data.Topics.ToList();
         }
 
-        public bool AddNewTopic(string seriesName, ref string err)
+        public bool AddNewTopic(string topicTitle, ref string err)
         {
-            var list = Data.Series.Where(s => s.Name.Equals(seriesName, StringComparison.OrdinalIgnoreCase)).ToList();
+            var list = Data.Topics.Where(t => t.Title.Equals(topicTitle, StringComparison.OrdinalIgnoreCase)).ToList();
             if (list != null && list.Count > 0)
             {
-                err = "The other series with this name is existing.";
+                err = "The other topic with this name is existing.";
                 return false;
             }
-            Series series = new Series();
-            series.Name = seriesName;
-            Data.Series.AddObject(series);
+            Topic topic = new Topic();
+            topic.Title = topicTitle;
+            Data.Topics.AddObject(topic);
+            return Data.SaveChanges() > 0 ? true : false;
+        }
+
+        public bool EditTopic(int topicId, string TopicTitle, bool isDisabled, string err)
+        {
+            var list = Data.Topics.Where(t => t.Title.Equals(TopicTitle, StringComparison.OrdinalIgnoreCase) && t.Id != topicId).ToList();
+            if (list != null && list.Count > 0)
+            {
+                err = "The other topic with this name is existing.";
+                return false;
+            }
+            Topic topic = Data.Topics.SingleOrDefault(t => t.Id == topicId);
+            if (topic != null)
+            {
+                topic.Title = TopicTitle;
+                topic.IsDisabled = isDisabled;
+                return Data.SaveChanges() > 0 ? true : false;
+            }
+            return false;
+        }
+
+        public bool IsTopicEmpty(int topicId)
+        {
+            Topic topic = Data.Topics.SingleOrDefault(t => t.Id == topicId);
+            if (topic != null)
+            {
+                if (topic.MediaItems != null && topic.MediaItems.Count > 0) return false;
+                else return true;
+            }
+            return true;
+        }
+
+        public bool DeleteTopic(int topicId)
+        {
+            Topic topic = Data.Topics.SingleOrDefault(t => t.Id == topicId);
+            if (topic != null)
+            {
+                Data.Topics.DeleteObject(topic);
+            }
             return Data.SaveChanges() > 0 ? true : false;
         }
     }
