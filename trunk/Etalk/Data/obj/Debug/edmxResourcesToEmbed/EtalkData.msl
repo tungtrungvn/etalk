@@ -4,6 +4,7 @@
     <EntitySetMapping Name="MediaItems">
       <EntityTypeMapping TypeName="EtalkModel.MediaItem">
         <MappingFragment StoreEntitySet="MediaItems">
+          <ScalarProperty Name="IsDisabled" ColumnName="IsDisabled" />
           <ScalarProperty Name="Website" ColumnName="Website" />
           <ScalarProperty Name="FileType" ColumnName="FileType" />
           <ScalarProperty Name="MediaType" ColumnName="MediaType" />
@@ -27,6 +28,7 @@
     <EntitySetMapping Name="Topics">
       <EntityTypeMapping TypeName="EtalkModel.Topic">
         <MappingFragment StoreEntitySet="Topics">
+          <ScalarProperty Name="IsDisabled" ColumnName="IsDisabled" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>

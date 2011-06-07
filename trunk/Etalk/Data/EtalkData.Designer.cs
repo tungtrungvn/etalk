@@ -170,12 +170,14 @@ namespace Etalk.Data
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="title">Initial value of the Title property.</param>
         /// <param name="fileType">Initial value of the FileType property.</param>
-        public static MediaItem CreateMediaItem(global::System.Int32 id, global::System.String title, global::System.Byte fileType)
+        /// <param name="isDisabled">Initial value of the IsDisabled property.</param>
+        public static MediaItem CreateMediaItem(global::System.Int32 id, global::System.String title, global::System.Byte fileType, global::System.Boolean isDisabled)
         {
             MediaItem mediaItem = new MediaItem();
             mediaItem.Id = id;
             mediaItem.Title = title;
             mediaItem.FileType = fileType;
+            mediaItem.IsDisabled = isDisabled;
             return mediaItem;
         }
 
@@ -376,6 +378,30 @@ namespace Etalk.Data
         private global::System.String _Website;
         partial void OnWebsiteChanging(global::System.String value);
         partial void OnWebsiteChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsDisabled
+        {
+            get
+            {
+                return _IsDisabled;
+            }
+            set
+            {
+                OnIsDisabledChanging(value);
+                ReportPropertyChanging("IsDisabled");
+                _IsDisabled = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsDisabled");
+                OnIsDisabledChanged();
+            }
+        }
+        private global::System.Boolean _IsDisabled;
+        partial void OnIsDisabledChanging(global::System.Boolean value);
+        partial void OnIsDisabledChanged();
 
         #endregion
     
@@ -591,11 +617,13 @@ namespace Etalk.Data
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="title">Initial value of the Title property.</param>
-        public static Topic CreateTopic(global::System.Int32 id, global::System.String title)
+        /// <param name="isDisabled">Initial value of the IsDisabled property.</param>
+        public static Topic CreateTopic(global::System.Int32 id, global::System.String title, global::System.Boolean isDisabled)
         {
             Topic topic = new Topic();
             topic.Id = id;
             topic.Title = title;
+            topic.IsDisabled = isDisabled;
             return topic;
         }
 
@@ -652,6 +680,30 @@ namespace Etalk.Data
         private global::System.String _Title;
         partial void OnTitleChanging(global::System.String value);
         partial void OnTitleChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsDisabled
+        {
+            get
+            {
+                return _IsDisabled;
+            }
+            set
+            {
+                OnIsDisabledChanging(value);
+                ReportPropertyChanging("IsDisabled");
+                _IsDisabled = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsDisabled");
+                OnIsDisabledChanged();
+            }
+        }
+        private global::System.Boolean _IsDisabled;
+        partial void OnIsDisabledChanging(global::System.Boolean value);
+        partial void OnIsDisabledChanged();
 
         #endregion
     

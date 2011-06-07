@@ -27,6 +27,7 @@
     <Property Type="String" Name="Website" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Series" Relationship="EtalkModel.FK_Videos_SeriesOfVieos" FromRole="MediaItem" ToRole="Series" />
     <NavigationProperty Name="Topics" Relationship="EtalkModel.MediaItem_Topic" FromRole="MediaItem" ToRole="Topic" />
+    <Property Type="Boolean" Name="IsDisabled" Nullable="false" />
   </EntityType>
   <EntityType Name="Series">
     <Key>
@@ -44,6 +45,7 @@
     <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Type="String" Name="Title" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="MediaItems" Relationship="EtalkModel.MediaItem_Topic" FromRole="Topic" ToRole="MediaItem" />
+    <Property Type="Boolean" Name="IsDisabled" Nullable="false" />
   </EntityType>
   <Association Name="FK_Videos_SeriesOfVieos">
     <End Type="EtalkModel.Series" Role="Series" Multiplicity="0..1" />

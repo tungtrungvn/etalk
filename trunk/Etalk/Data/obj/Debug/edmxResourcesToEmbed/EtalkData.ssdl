@@ -38,6 +38,7 @@
     <Property Name="MediaType" Type="tinyint" />
     <Property Name="FileType" Type="tinyint" Nullable="false" />
     <Property Name="Website" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsDisabled" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Series">
     <Key>
@@ -53,6 +54,7 @@
     </Key>
     <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="IsDisabled" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="FK_MediaItems_Series">
     <End Role="Series" Type="EtalkModel.Store.Series" Multiplicity="0..1" />
